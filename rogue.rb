@@ -9,7 +9,6 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Rogue"
-    #@text = Gosu::Font.new(20)
     @map = []
     lines = File.readlines("media/map.txt").map {|line| line.chomp}
     width = lines[0].length
@@ -23,6 +22,7 @@ class GameWindow < Gosu::Window
   end
 
   def update
+    #this is production code. Makes it easy to close the window.
     close if button_down?(Gosu::KbEscape)
   end
 
@@ -34,7 +34,6 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    #@text.draw("x: #{@player.x} y: #{@player.y}", 100, 300, 1)
     @map.each {|tile| tile.draw}
     @player.draw
   end
