@@ -1,6 +1,7 @@
 require 'gosu'
 require_relative 'map'
 require_relative 'player'
+require_relative 'world'
 
 class GameWindow < Gosu::Window
   WIDTH = 640
@@ -9,13 +10,16 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Rogue"
+
     @map = []
-    lines = File.readlines("media/map.txt").map {|line| line.chomp}
+    puts @map
+    lines = World.new.array
+    #lines = File.readlines("media/map.txt").map {|line| line.chomp}
     width = lines[0].length
     height = lines.length
     height.times do |y|
       width.times do |x|
-      @map << Map.new(x * 20, y * 20) if lines[y][x] == "."
+      @map << Map.new(x * 20, y * 20, lines[y][x]) if lines[y][x] != nil
       end
     end
     @player = Player.new(260, 180, @map)
@@ -35,13 +39,13 @@ class GameWindow < Gosu::Window
 
   def draw
     @map.each do |tile, distance|
-#this works in the opposite. Not sure how to figure the distance threshold.
       distance = Gosu.distance(@player.x, @player.y, tile.x, tile.y)
       if distance < 60
         tile.draw
       end
     end
     @player.draw
+    #@map.each {|tile| tile.draw}
   end
 end
 
