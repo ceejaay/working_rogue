@@ -1,6 +1,4 @@
 class Map
-  CENTER_X = 10
-  CENTER_Y = 10
   attr_accessor :x, :y
   def initialize(x, y)
     @x = x

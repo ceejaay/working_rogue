@@ -1,7 +1,5 @@
 class Player
-  CENTER_X = 10
-  CENTER_Y = 10
-  attr_accessor :x, :y, :go_north, :go_south, :go_east, :go_west
+  attr_accessor :x, :y
 
   def initialize(x, y, map)
     @image = Gosu::Font.new(20)
@@ -51,5 +49,4 @@ class Player
     end
     return clear
   end
-
 end
