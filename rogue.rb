@@ -34,7 +34,13 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @map.each {|tile| tile.draw}
+    @map.each do |tile, distance|
+#this works in the opposite. Not sure how to figure the distance threshold.
+      distance = Gosu.distance(@player.x, @player.y, tile.x, tile.y)
+      if distance > 30
+        tile.draw
+      end
+    end
     @player.draw
   end
 end
