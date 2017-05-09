@@ -38,14 +38,8 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @map.each do |tile, distance|
-      distance = Gosu.distance(@player.x, @player.y, tile.x, tile.y)
-      if distance < 60
-        tile.draw
-      end
-    end
+    @map.each {|tile| tile.draw(@player.x, @player.y)}
     @player.draw
-    #@map.each {|tile| tile.draw}
   end
 end
 
