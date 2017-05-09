@@ -3,10 +3,13 @@ require_relative 'map'
 require_relative 'player'
 
 class GameWindow < Gosu::Window
+  WIDTH = 640
+  HEIGHT = 480
+
   def initialize
-    super 640, 480
+    super WIDTH, HEIGHT
     self.caption = "Rogue"
-    @text = Gosu::Font.new(20)
+    #@text = Gosu::Font.new(20)
     @map = []
     lines = File.readlines("media/map.txt").map {|line| line.chomp}
     width = lines[0].length
@@ -18,8 +21,6 @@ class GameWindow < Gosu::Window
     end
     @player = Player.new(260, 180, @map)
   end
-
-
 
   def update
     close if button_down?(Gosu::KbEscape)
@@ -33,11 +34,10 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @text.draw("x: #{@player.x} y: #{@player.y}", 100, 300, 1)
+    #@text.draw("x: #{@player.x} y: #{@player.y}", 100, 300, 1)
     @map.each {|tile| tile.draw}
     @player.draw
   end
-
 end
 
 window = GameWindow.new
