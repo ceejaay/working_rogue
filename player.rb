@@ -1,4 +1,8 @@
 class Player
+  TOP = 0
+  LEFT = 0
+  BOTTOM = 460
+  RIGHT = 620
   attr_accessor :x, :y
 
   def initialize(x, y, map)
@@ -15,13 +19,13 @@ class Player
   def move(direction)
     case direction
       when :up
-        @y -= 20
+        @y -= 20 unless @y == TOP
       when :down
-        @y += 20
+        @y += 20 unless @y == BOTTOM
       when :left
-        @x -= 20
+        @x -= 20 unless @x == LEFT
       when :right
-        @x += 20
+        @x += 20 unless @x == RIGHT
     end
   end
 

@@ -12,7 +12,6 @@ class GameWindow < Gosu::Window
     self.caption = "Rogue"
 
     @map = []
-    puts @map
     lines = World.new.array
     #lines = File.readlines("media/map.txt").map {|line| line.chomp}
     width = lines[0].length
