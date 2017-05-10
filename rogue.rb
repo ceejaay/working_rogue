@@ -30,10 +30,40 @@ class GameWindow < Gosu::Window
   end
 
   def button_down(id)
-    @player.move(:up) if id == (Gosu::KbUp) and @player.clear?(:up)
-    @player.move(:down) if id == (Gosu::KbDown) and @player.clear?(:down)
-    @player.move(:left) if id == (Gosu::KbLeft) and @player.clear?(:left)
-    @player.move(:right) if id == (Gosu::KbRight) and @player.clear?(:right)
+    case id
+       when Gosu::KbUp
+         if @player.clear?(:up)
+           @player.move(:up)
+         end
+       when Gosu::KbDown
+         if @player.clear?(:down)
+           @player.move(:down)
+         end
+       when Gosu::KbLeft
+         if @player.clear?(:left)
+           @player.move(:left)
+         end
+       when Gosu::KbRight
+         if @player.clear?(:right)
+           @player.move(:right)
+         end
+       when Gosu::GP_UP
+         if @player.clear?(:up)
+           @player.move(:up)
+         end
+       when Gosu::GP_DOWN
+         if @player.clear?(:down)
+           @player.move(:down)
+         end
+       when Gosu::GP_LEFT
+         if @player.clear?(:left)
+           @player.move(:left)
+         end
+       when Gosu::GP_RIGHT
+         if @player.clear?(:right)
+           @player.move(:right)
+         end
+    end
   end
 
   def draw
