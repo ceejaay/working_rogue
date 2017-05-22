@@ -10,7 +10,7 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Rogue"
-
+    @camera_x, @camera_y = 0
     @map = []
     lines = World.new.array
     #lines = File.readlines("media/map.txt").map {|line| line.chomp}
@@ -26,7 +26,10 @@ class GameWindow < Gosu::Window
 
   def update
     #this is production code. Makes it easy to close the window.
+    @camera_x = [[@player.x - WIDTH / 2, 0].max, 1280 - WIDTH ].min
+    @camera_y = [[@player.y - HEIGHT / 2, 0].max, 960 - HEIGHT].min
     close if button_down?(Gosu::KbEscape)
+
   end
 
   def button_down(id)
@@ -67,8 +70,10 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    @map.each {|tile| tile.draw(@player.x, @player.y)}
-    @player.draw
+    Gosu::translate(-@camera_x, -@camera_y) do
+      @map.each {|tile| tile.draw(@player.x, @player.y)}
+      @player.draw
+    end
   end
 end
 
