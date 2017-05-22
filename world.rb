@@ -4,7 +4,7 @@
 class World
   attr_reader :array
   def initialize
-    @array = Array.new(48) {Array.new(64) {[nil, nil, nil, nil, nil, nil, nil, nil, "T", "^" ].sample}}
+    @array = Array.new(72) {Array.new(96) {[nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, "T", "^" ].sample}}
   end
 
   def populate

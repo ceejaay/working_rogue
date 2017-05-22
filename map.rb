@@ -8,9 +8,9 @@ class Map
   end
 
   def draw(player_x, player_y)
-    distance = Gosu.distance(@x, @y, player_x, player_y)
-    if distance < 60
+    #distance = Gosu.distance(@x, @y, player_x, player_y)
+    #if distance < 60
       @tile.draw(@type, @x, @y, 1)
-    end
+    #end
   end
 end

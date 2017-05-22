@@ -1,8 +1,8 @@
 class Player
   TOP = 0
   LEFT = 0
-  BOTTOM = 460
-  RIGHT = 620
+  BOTTOM = 940
+  RIGHT = 1260
   attr_accessor :x, :y
 
   def initialize(x, y, map)
