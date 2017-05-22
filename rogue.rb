@@ -80,9 +80,9 @@ class GameWindow < Gosu::Window
     Gosu::translate(-@camera_x, -@camera_y) do
       @map.each {|tile| tile.draw(@player.x, @player.y)}
       @player.draw
-      @text.draw("X: #{@player.x} Y: #{@player.y}", @player.x - 60, @player.y - 15, 1)
+      #@text.draw("X: #{@player.x} Y: #{@player.y}", @player.x - 60, @player.y - 15, 1)
     end
-      @text.draw("Cam X: #{-@camera_x} Cam Y: #{@camera_y}", 200, 200, 1)
+      #@text.draw("Cam X: #{-@camera_x} Cam Y: #{@camera_y}", 200, 200, 1)
 
   end
 end
