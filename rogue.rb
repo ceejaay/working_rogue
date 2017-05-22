@@ -25,8 +25,9 @@ class GameWindow < Gosu::Window
       tile.x = tile.x - WIDTH / 2
       tile.y = tile.y - HEIGHT / 2
     end
-    @player = Player.new(320, 240, @map)
+    @player = Player.new(640, 480, @map)
     @text = Gosu::Font.new(15)
+#maybe make this into a constant
     @map_width = 1280
     @map_height = 960
   end
