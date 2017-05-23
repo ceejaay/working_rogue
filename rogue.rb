@@ -21,6 +21,7 @@ class GameWindow < Gosu::Window
       @map << Map.new(x * 20, y * 20, lines[y][x]) if lines[y][x] != nil
       end
     end
+#this shifts all the tiles to their right place. If you don't do this everything is in the wrong place. Maybe
     @map.each do |tile|
       tile.x = tile.x - WIDTH / 2
       tile.y = tile.y - HEIGHT / 2
@@ -35,6 +36,15 @@ class GameWindow < Gosu::Window
   def update
     @camera_x = [[@player.x - WIDTH / 2, 0].max, @map_width - WIDTH ].min
     @camera_y = [[@player.y - HEIGHT / 2, 0].max, @map_height - HEIGHT].min
+    puts "#{Gosu::GP_BUTTON_0}" if button_down?(Gosu::GP_BUTTON_0)#A < 277
+    puts "#{Gosu::GP_BUTTON_1}" if button_down?(Gosu::GP_BUTTON_1)#B < 278
+    puts "menu" if button_down?(Gosu::GP_BUTTON_2)#X < 279
+    puts "#{Gosu::GP_BUTTON_3}" if button_down?(Gosu::GP_BUTTON_3)#Y < 280
+    puts "#{Gosu::GP_BUTTON_4}" if button_down?(Gosu::GP_BUTTON_4)#Shoulder Left < 281
+    puts "#{Gosu::GP_BUTTON_5}" if button_down?(Gosu::GP_BUTTON_5)#Shoulder Right < 282
+    puts "#{Gosu::GP_BUTTON_6}" if button_down?(Gosu::GP_BUTTON_6)#select button < 283
+    puts "#{Gosu::GP_BUTTON_7}" if button_down?(Gosu::GP_BUTTON_7)#start button < 284
+    puts "bomb!" if button_down?(Gosu::GP_RIGHT) and button_down?(Gosu::GP_BUTTON_3)
     #this is production code. Makes it easy to close the window.
     close if button_down?(Gosu::KbEscape)
 
