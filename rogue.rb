@@ -2,6 +2,7 @@ require 'gosu'
 require_relative 'map'
 require_relative 'player'
 require_relative 'world'
+require_relative 'bomb'
 
 class GameWindow < Gosu::Window
   WIDTH = 640
@@ -12,6 +13,7 @@ class GameWindow < Gosu::Window
     self.caption = "Rogue"
     @camera_x, @camera_y = 0
     @map = []
+    @bombs = []
     lines = World.new.array
     #lines = File.readlines("media/map.txt").map {|line| line.chomp}
     width = lines[0].length
@@ -46,10 +48,12 @@ class GameWindow < Gosu::Window
     puts "#{Gosu::GP_BUTTON_5}" if button_down?(Gosu::GP_BUTTON_5)#Shoulder Right < 282
     puts "#{Gosu::GP_BUTTON_6}" if button_down?(Gosu::GP_BUTTON_6)#select button < 283
     puts "#{Gosu::GP_BUTTON_7}" if button_down?(Gosu::GP_BUTTON_7)#start button < 284
-    puts "bomb!" if button_down?(Gosu::GP_RIGHT) and button_down?(Gosu::GP_BUTTON_3)
+    @bombs << Bomb.new(@player.x + 20, @player.y) if button_down?(Gosu::GP_RIGHT) and button_down?(Gosu::GP_BUTTON_1)
+    @bombs << Bomb.new(@player.x - 20, @player.y) if button_down?(Gosu::GP_LEFT) and button_down?(Gosu::GP_BUTTON_1)
+    @bombs << Bomb.new(@player.x, @player.y - 20) if button_down?(Gosu::GP_UP) and button_down?(Gosu::GP_BUTTON_1)
+    @bombs << Bomb.new(@player.x, @player.y + 20) if button_down?(Gosu::GP_DOWN) and button_down?(Gosu::GP_BUTTON_1)
     #this is production code. Makes it easy to close the window.
     close if button_down?(Gosu::KbEscape)
-
   end
 
   def button_down(id)
@@ -93,10 +97,12 @@ class GameWindow < Gosu::Window
     Gosu::translate(-@camera_x, -@camera_y) do
       @map.each {|tile| tile.draw(@player.x, @player.y)}
       @player.draw
+      @bombs.each {|bomb| bomb.draw}
       @text.draw("X: #{@player.x} Y: #{@player.y}", @player.x - 60, @player.y - 15, 1)
     end
+
 #we'll draw the message box outside the camera
-      #@text.draw("Cam X: #{-@camera_x} Cam Y: #{@camera_y}", 200, 200, 1)
+      @text.draw("Cam X: #{-@camera_x} Cam Y: #{@camera_y}", 200, 200, 1)
 
   end
 end
