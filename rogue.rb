@@ -22,10 +22,12 @@ class GameWindow < Gosu::Window
       end
     end
 #this shifts all the tiles to their right place. If you don't do this everything is in the wrong place. Maybe
+=begin
     @map.each do |tile|
       tile.x = tile.x - WIDTH / 2
       tile.y = tile.y - HEIGHT / 2
     end
+=end
     @player = Player.new(640, 480, @map)
     @text = Gosu::Font.new(15)
 #maybe make this into a constant
